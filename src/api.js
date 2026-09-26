@@ -18,10 +18,12 @@ async function request(path, options = {}) {
     data = null;
   }
 
-  if (!res.ok) {
-    throw new Error((data && data.error) || 'Terjadi kesalahan, silakan coba lagi.');
-  }
-  return data;
+if (!res.ok) {
+  const err = new Error((data && data.error) || 'Terjadi kesalahan, silakan coba lagi.');
+  err.data = data;
+  throw err;
+}
+return data;
 }
 
 export const api = {
