@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import VerifyEmail from './pages/VerifyEmail';
 import Home from './pages/Home';
 import TemplateDetail from './pages/TemplateDetail';
 import Login from './pages/Login';
@@ -22,6 +22,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/template/:id" element={<TemplateDetail />} />
         <Route path="/masuk" element={<Login />} />
+        <Route path="/verifikasi-email" element={<VerifyEmail />} />
         <Route path="/daftar" element={<Register />} />
         <Route path="/u/:slug" element={<PublicInvitation />} />
 
