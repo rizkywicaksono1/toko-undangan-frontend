@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import api from "../api";
 
 // Hanya import template yang SUDAH ADA filenya di folder templates
-import WeddingPremium055 from "../templates/WeddingPremium055/index.jsx";
+import { WeddingPremium055 } from "../templates/WeddingPremium055/index.jsx";
 
 // Daftarkan komponen di sini
 const TEMPLATE_COMPONENTS = {
