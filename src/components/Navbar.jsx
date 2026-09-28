@@ -17,7 +17,7 @@ export default function Navbar() {
         <Link to="/">Katalog</Link>
         {user && <Link to="/pesanan-saya">Pesanan Saya</Link>}
         {user && <Link to="/undangan-saya">Undangan Saya</Link>}
-        {user?.is_admin && <Link to="/admin">Admin</Link>}
+       {Boolean(user?.is_admin) && <Link to="/admin">Admin</Link>}
         {!user && <Link to="/masuk">Masuk</Link>}
         {!user && <Link to="/daftar" className="btn small">Daftar</Link>}
         {user && (
