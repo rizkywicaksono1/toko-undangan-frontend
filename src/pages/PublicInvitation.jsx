@@ -4,12 +4,19 @@ import api from "../api";
 
 // Hanya import template yang SUDAH ADA filenya di folder templates
 import WeddingPremium055 from "../templates/WeddingPremium055/index.jsx";
+import WeddingPremium01 from "../templates/WeddingPremium01/index.jsx";
 
 // Daftarkan komponen di sini
 const TEMPLATE_COMPONENTS = {
   "wedding-premium055": WeddingPremium055,
   "weddingpremium055": WeddingPremium055,
   "demo-wedding-premium055": WeddingPremium055,
+};
+// Daftarkan komponen di sini
+const TEMPLATE_COMPONENTS = {
+  "wedding-premium01": WeddingPremium01,
+  "weddingpremium01": WeddingPremium01,
+  "demo-wedding-premium01": WeddingPremium01,
 };
 
 // Data contoh default khusus saat mode demo
