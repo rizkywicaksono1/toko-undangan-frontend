@@ -1,16 +1,21 @@
 // api.js — helper untuk memanggil backend Express
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
 function getToken() {
-  return localStorage.getItem('token');
+  try {
+    return localStorage.getItem('token');
+  } catch {
+    return null;
+  }
 }
 
 async function request(path, options = {}) {
-  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+  const headers = { 'Content-TAype': 'application/json', ...(options.headers || {}) };
   const token = getToken();
   if (token) headers.Authorization = `Bearer ${token}`;
 
   const res = await fetch(`${API_URL}${path}`, { ...options, headers });
+
   let data = null;
   try {
     data = await res.json();
@@ -18,12 +23,18 @@ async function request(path, options = {}) {
     data = null;
   }
 
-if (!res.ok) {
-  const err = new Error((data && data.error) || 'Terjadi kesalahan, silakan coba lagi.');
-  err.data = data;
-  throw err;
-}
-return data;
+  if (!res.ok) {
+    const err = new Error(
+      (data && (data.error || data.message)) || 'Terjadi kesalahan, silakan coba lagi.'
+    );
+    err.status = res.status;
+    err.data = data;
+    // Kompatibel dengan gaya axios: err.response.data.message
+    err.response = { status: res.status, data };
+    throw err;
+  }
+
+  return data;
 }
 
 export const api = {
@@ -33,4 +44,5 @@ export const api = {
   del: (path) => request(path, { method: 'DELETE' }),
 };
 
-export { API_URL };
+// Default export supaya `import api from "../api"` dan `import { api } from "../api"` sama-sama jalan
+export default api;
