@@ -61,7 +61,7 @@ export default function Register() {
     try {
       await verifyOtp(form.email, otp.trim());
       // Jika berhasil, akun sudah tersimpan di TiDB dan user langsung masuk
-      navigate('/dashboard');
+    navigate('/');
     } catch (err) {
       setError(err.message || 'Kode OTP salah atau telah kedaluwarsa.');
     } finally {
