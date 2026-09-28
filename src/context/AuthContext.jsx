@@ -30,11 +30,24 @@ export function AuthProvider({ children }) {
     return data.user;
   }
 
-  async function register(name, email, password) {
-    const data = await api.post('/auth/register', { name, email, password });
-    localStorage.setItem('token', data.token);
-    setUser(data.user);
-    return data.user;
+ // async function register(name, email, password) {
+  //  const data = await api.post('/auth/register', { name, email, password });
+    //localStorage.setItem('token', data.token);
+  //  setUser(data.user);
+    //return data.user;
+    
+    // Langkah 1: Minta kode OTP ke email
+  async function requestRegister(name, email, password) {
+    return await api.post('/auth/register-request', { name, email, password });
+  }
+  // Langkah 2: Verifikasi OTP dan aktifkan akun di TiDB
+  async function verifyOtp(email, otp) {
+    const data = await api.post('/auth/verify-otp', { email, otp });
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+      setUser(data.user);
+    }
+    return data;
   }
 
   async function loginWithGoogle(credential) {
@@ -50,7 +63,17 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, loginWithGoogle, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        requestRegister,
+        verifyOtp,
+        loginWithGoogle,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
