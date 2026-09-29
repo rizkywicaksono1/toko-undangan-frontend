@@ -10,7 +10,7 @@ function getToken() {
 }
 
 async function request(path, options = {}) {
-  const headers = { 'Content-TAype': 'application/json', ...(options.headers || {}) };
+  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
   const token = getToken();
   if (token) headers.Authorization = `Bearer ${token}`;
 
