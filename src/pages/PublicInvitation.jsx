@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import api from "../api";
 
-// Hanya import template yang SUDAH ADA filenya di folder templates
+// 1. IMPORT TEMPLATE
+// (Hanya import template yang SUDAH BENAR-BENAR ADA filenya di folder templates)
 import WeddingPremium055 from "../templates/WeddingPremium055/index.jsx";
-import WeddingPremium01 from "../templates/WeddingPremium01/index.jsx";
+// Jika WeddingPremium01 sudah Anda buat filenya di GitHub, silakan hilangkan tanda komentar (//) di bawah:
+// import WeddingPremium01 from "../templates/WeddingPremium01/index.jsx";
 
-// Daftarkan komponen di sini
+// 2. DAFTARKAN SEMUA TEMPLATE DALAM SATU OBJEK (JANGAN DIBUAT DUA KALI)
 const TEMPLATE_COMPONENTS = {
+  // Template Wedding Premium 055
   "wedding-premium055": WeddingPremium055,
   "weddingpremium055": WeddingPremium055,
   "demo-wedding-premium055": WeddingPremium055,
-};
-// Daftarkan komponen di sini
-const TEMPLATE_COMPONENTS = {
-  "wedding-premium01": WeddingPremium01,
-  "weddingpremium01": WeddingPremium01,
-  "demo-wedding-premium01": WeddingPremium01,
+
+  // Template Wedding Premium 01 (aktifkan jika komponennya sudah di-import di atas)
+  // "wedding-premium01": WeddingPremium01,
+  // "weddingpremium01": WeddingPremium01,
+  // "demo-wedding-premium01": WeddingPremium01,
 };
 
 // Data contoh default khusus saat mode demo
@@ -88,7 +90,9 @@ export default function PublicInvitation() {
     const isDemo = slug && slug.toLowerCase().includes("demo");
 
     if (isDemo) {
-      setTemplateSlug("wedding-premium055");
+      // Hilangkan awalan "demo-" untuk mencocokkan template yang tepat
+      const cleanSlug = slug.toLowerCase().replace(/^demo-/, "");
+      setTemplateSlug(cleanSlug);
       setInvitationData(DEFAULT_DEMO_DATA);
       setWishes(DEFAULT_WISHES);
       setLoading(false);
@@ -161,7 +165,11 @@ export default function PublicInvitation() {
     );
   }
 
-  const SelectedTemplate = TEMPLATE_COMPONENTS[templateSlug] || TEMPLATE_COMPONENTS["wedding-premium055"];
+  // Pilih template yang cocok, jika tidak ada fallback ke WeddingPremium055
+  const SelectedTemplate =
+    TEMPLATE_COMPONENTS[templateSlug] ||
+    TEMPLATE_COMPONENTS[`demo-${templateSlug}`] ||
+    TEMPLATE_COMPONENTS["wedding-premium055"];
 
   return (
     <SelectedTemplate
