@@ -15,10 +15,10 @@ const TEMPLATE_COMPONENTS = {
   "weddingpremium055": WeddingPremium055,
   "demo-wedding-premium055": WeddingPremium055,
 
-  // Template Wedding Premium 01 (aktifkan jika komponennya sudah di-import di atas)
-  // "wedding-premium01": WeddingPremium01,
-  // "weddingpremium01": WeddingPremium01,
-  // "demo-wedding-premium01": WeddingPremium01,
+  Template Wedding Premium 01 (aktifkan jika komponennya sudah di-import di atas)
+   "wedding-premium01": WeddingPremium01,
+  "weddingpremium01": WeddingPremium01,
+   "demo-wedding-premium01": WeddingPremium01,
 };
 
 // Data contoh default khusus saat mode demo
