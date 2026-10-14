@@ -1,10 +1,10 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-
+/*
    TEMPLATE: WeddingPremium055 (Sage Green & Gold)
    Props dari PublicInvitation:
-   data / invitation, guestName, wishes, onRsvpSubmit
+   data / invitation, guestName, wishes, onRsvpSubmit */
 
 
 const HARI = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
