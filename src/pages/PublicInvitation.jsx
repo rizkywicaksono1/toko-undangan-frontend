@@ -6,7 +6,7 @@ import api from "../api";
 // (Hanya import template yang SUDAH BENAR-BENAR ADA filenya di folder templates)
 import WeddingPremium055 from "../templates/WeddingPremium055/index.jsx";
 // Jika WeddingPremium01 sudah Anda buat filenya di GitHub, silakan hilangkan tanda komentar (//) di bawah:
-// import WeddingPremium01 from "../templates/WeddingPremium01/index.jsx";
+import WeddingPremium01 from "../templates/WeddingPremium01/index.jsx";
 
 // 2. DAFTARKAN SEMUA TEMPLATE DALAM SATU OBJEK (JANGAN DIBUAT DUA KALI)
 const TEMPLATE_COMPONENTS = {
